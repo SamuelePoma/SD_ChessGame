@@ -1,5 +1,13 @@
 package chessgame;
 
+import chessgame.singleton.Game;
+import chessgame.state.PlayState;
+import chessgame.state.SetupState;
+
+
+/**
+ * Main class to run the chess game.
+ */
 public class Main {
     public static void main(String[] args) {
         Game game = Game.getInstance();

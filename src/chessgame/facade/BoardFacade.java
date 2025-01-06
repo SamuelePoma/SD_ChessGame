@@ -1,7 +1,10 @@
-package chessgame;
+package chessgame.facade;
 
 import java.util.List;
 import java.util.Map;
+import chessgame.board.Board;
+import chessgame.pieces.BaseChessPiece;
+import chessgame.utils.Position;
 
 public class BoardFacade {
     private Board board;
@@ -14,6 +17,10 @@ public class BoardFacade {
     // Place a piece on the board
     public void placePiece(BaseChessPiece piece, Position pos) {
         board.placePiece(piece, pos);
+    }
+
+    public BaseChessPiece getPiece(Position pos){
+        return board.getPiece(pos);
     }
 
     // Move a piece on the board
@@ -33,13 +40,6 @@ public class BoardFacade {
 
     // Display the board
     public void displayBoard() {
-        for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 8; col++) {
-                Position pos = new Position(row, col);
-                BaseChessPiece piece = board.getPiece(pos);
-                System.out.print((piece != null ? piece.getName().charAt(0) : ".") + " ");
-            }
-            System.out.println();
-        }
+        board.displayBoard();
     }
 }

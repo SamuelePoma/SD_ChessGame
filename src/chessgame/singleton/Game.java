@@ -1,4 +1,7 @@
-package chessgame;
+package chessgame.singleton;
+
+import chessgame.facade.BoardFacade;
+import chessgame.state.GameState;
 
 public class Game {
     private static Game instance;

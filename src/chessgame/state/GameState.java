@@ -1,4 +1,4 @@
-package chessgame;
+package chessgame.state;
 
 public interface GameState {
     void execute();
