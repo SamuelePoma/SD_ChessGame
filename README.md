@@ -1,4 +1,6 @@
 # SD_ChessGame
+**GitHub Link:**
+https://github.com/SamuelePoma/SD_ChessGame.git
 
 **SD_ChessGame** is a **console-based chess application** developed in Java. The project utilizes **six design patterns** to ensure flexible and maintainable code:
 
