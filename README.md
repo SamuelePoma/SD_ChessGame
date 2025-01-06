@@ -1,12 +1,17 @@
 # SD_ChessGame
 
-**SD_ChessGame** is a **console-based chess application** developed in Java. The project utilizes **three design patterns** to ensure flexible and maintainable code:
+**SD_ChessGame** is a **console-based chess application** developed in Java. The project utilizes **six design patterns** to ensure flexible and maintainable code:
 
-1. **Strategy Pattern** (for piece movement)
-2. **Decorator Pattern** (to add behaviors such as logging)
-3. **Prototype Pattern** (to create/clone pieces efficiently)
+1. **Prototype Pattern** 
+2. **Singleton Pattern** 
+3. **Facade Pattern**
+4. **Decorator Pattern**
+5. **Strategy Pattern** 
+6. **State Pattern**
 
 This README provides an overview of the project structure, instructions for compiling and running the application, and detailed explanations of the integrated design patterns.
+
+This game is done for the Software Design Exam. The program was made by Andrea Bezzolato and Samuele Poma, students of the HZ University of Applied Sciences.
 
 ---
 
@@ -18,9 +23,14 @@ This README provides an overview of the project structure, instructions for comp
    - [Compilation with `javac` and `java`](#compilation-with-javac-and-java)
    - [Compile and Run in IntelliJ IDEA](#compile-and-run-in-intellij-idea)
 3. [Design Patterns](#design-patterns)
-   - [Strategy Pattern](#strategy-pattern)
-   - [Decorator Pattern](#decorator-pattern)
    - [Prototype Pattern](#prototype-pattern)
+   - [Singleton Pattern](#singleton-pattern)
+   - [Facade Pattern](#facade-pattern)
+   - [Decorator Pattern](#decorator-pattern)
+   - [Strategy Pattern](#strategy-pattern)
+   - [State Pattern](#state-pattern)
+   
+   
 4. [Code Structure](#code-structure)
    - [Component Descriptions](#component-descriptions)
 5. [Contributors](#contributors)
@@ -117,3 +127,100 @@ Each piece (e.g., `PawnPiece`, `RookPiece`) is linked to a specific `MoveStrateg
 **Usage Example:**
 ```java
 BaseChessPiece pawn = new PawnPiece("White Pawn", PieceColor.WHITE);
+```
+
+### Facade Pattern
+
+**Purpose:**  
+Simplifies the interface for managing the chessboard and interactions with chess pieces, hiding the complexity of individual components (e.g., piece movement, validation, and board state).
+
+---
+
+**Implementation:**  
+The `BoardFacade` class acts as a central access point for the `Board` and `BaseChessPiece` classes, providing methods to place pieces, move them, and query the state of the board.
+
+Example:
+```java
+BoardFacade boardFacade = new BoardFacade();
+BaseChessPiece pawn = new PawnPiece("White Pawn", PieceColor.WHITE);
+boardFacade.placePiece(pawn, new Position(6, 0));
+boardFacade.displayBoard();
+```
+
+---
+
+**Benefits of Using the Facade Pattern:**
+
+1. **Simplified Interface**:  
+   - Centralized access to chessboard operations reduces the need to interact directly with complex underlying systems.
+
+2. **Encapsulation of Complexity**:  
+   - Hides the details of movement validation, piece placement, and board state management.
+
+3. **Improved Maintainability**:  
+   - Changes in the internal logic (e.g., piece movement rules) don’t affect client code using the `BoardFacade`.
+
+---
+
+### State Pattern
+
+**Purpose:**  
+Manages the behavior of the chess game as it progresses through different phases (e.g., setup, play).
+
+---
+
+**Implementation:**  
+The `GameState` interface defines the structure for game phases. Concrete implementations like `SetupState` and `PlayState` encapsulate the specific logic for each phase. The `Game` class uses these implementations to manage state transitions dynamically.
+
+Example:
+```java
+Game game = Game.getInstance();
+GameState setupState = new SetupState(game);
+game.setState(setupState);
+game.getState().execute();
+```
+
+---
+
+**Benefits of Using the State Pattern:**
+
+1. **Simplified State Management**:  
+   - Encapsulates game phase logic within separate classes, improving code organization.
+
+2. **Dynamic Behavior Changes**:  
+   - Allows the game to switch behaviors at runtime based on the current state.
+
+3. **Extensibility**:  
+   - New states can be added without altering the existing states or the `Game` class.
+
+---
+
+### Singleton Pattern
+
+**Purpose:**  
+Ensures a single instance of the `Game` class exists, providing a global access point to manage the game state.
+
+---
+
+**Implementation:**  
+The `Game` class maintains a private static instance of itself and provides a `getInstance` method for lazy initialization and global access.
+
+Example:
+```java
+Game game = Game.getInstance();
+BoardFacade boardFacade = game.getBoardFacade();
+boardFacade.displayBoard();
+```
+
+---
+
+**Benefits of Using the Singleton Pattern:**
+
+1. **Controlled Access to a Single Instance**:  
+   - Guarantees only one instance of the game exists, avoiding duplication.
+
+2. **Global Access Point**:  
+   - Provides a centralized mechanism to access the game’s state and functionality.
+
+3. **Lazy Initialization**:  
+   - The instance is created only when needed, optimizing resource usage.

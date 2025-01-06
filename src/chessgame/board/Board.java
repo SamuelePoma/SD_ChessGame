@@ -102,7 +102,7 @@ public class Board {
      * The board is displayed symmetrically with white pieces on the bottom and black pieces on the top.
      */
     public void displayBoard() {
-        System.out.println("  +------------------------+");
+        System.out.println("+------------------------+");
         for (int row = 0; row < 8; row++) {
             System.out.print((8 - row) + "|");
             for (int col = 0; col < 8; col++) {
@@ -116,7 +116,7 @@ public class Board {
             }
             System.out.println("|");
         }
-        System.out.println("  +------------------------+");
-        System.out.println("    a b c d e f g h");
+        System.out.println("+------------------------+");
+        System.out.println("  a b c d e f g h");
     }
 }
