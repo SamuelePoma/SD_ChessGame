@@ -2,16 +2,18 @@
 
 **SD_ChessGame** is a **console-based chess application** developed in Java. The project utilizes **six design patterns** to ensure flexible and maintainable code:
 
-1. **Prototype Pattern** 
-2. **Singleton Pattern** 
+1. **Prototype Pattern**
+2. **Singleton Pattern**
 3. **Facade Pattern**
 4. **Decorator Pattern**
-5. **Strategy Pattern** 
+5. **Strategy Pattern**
 6. **State Pattern**
 
 This README provides an overview of the project structure, instructions for compiling and running the application, and detailed explanations of the integrated design patterns.
 
-This game is done for the Software Design Exam. The program was made by Andrea Bezzolato and Samuele Poma, students of the HZ University of Applied Sciences.
+This game is developed for the Software Design Exam. The program was created by **Andrea Bezzolato** and **Samuele Poma**, students of the HZ University of Applied Sciences. Each team member implemented three design patterns to ensure a balanced and collaborative effort:
+- **Andrea Bezzolato:** Singleton, State, Facade
+- **Samuele Poma:** Strategy, Prototype, Decorator
 
 ---
 
@@ -19,34 +21,29 @@ This game is done for the Software Design Exam. The program was made by Andrea B
 
 1. [Project Overview](#project-overview)
 2. [Installation & Execution](#installation--execution)
-   - [Clone or Download](#clone-or-download)
-   - [Compilation with `javac` and `java`](#compilation-with-javac-and-java)
-   - [Compile and Run in IntelliJ IDEA](#compile-and-run-in-intellij-idea)
+    - [Clone or Download](#clone-or-download)
+    - [Compilation with `javac` and `java`](#compilation-with-javac-and-java)
+    - [Compile and Run in IntelliJ IDEA](#compile-and-run-in-intellij-idea)
 3. [Design Patterns](#design-patterns)
-   - [Prototype Pattern](#prototype-pattern)
-   - [Singleton Pattern](#singleton-pattern)
-   - [Facade Pattern](#facade-pattern)
-   - [Decorator Pattern](#decorator-pattern)
-   - [Strategy Pattern](#strategy-pattern)
-   - [State Pattern](#state-pattern)
-   
-   
+    - [Prototype Pattern](#prototype-pattern)
+    - [Singleton Pattern](#singleton-pattern)
+    - [Facade Pattern](#facade-pattern)
+    - [Decorator Pattern](#decorator-pattern)
+    - [Strategy Pattern](#strategy-pattern)
+    - [State Pattern](#state-pattern)
 4. [Code Structure](#code-structure)
-   - [Component Descriptions](#component-descriptions)
+    - [Component Descriptions](#component-descriptions)
 5. [Contributors](#contributors)
-6. [License](#license)
-7. [Additional Notes](#additional-notes)
-
 ---
 
 ## Project Overview
 
 **SD_ChessGame** is a minimalist chess application that currently supports:
 
-- Placing pieces on an 8×8 chessboard
-- Pawn movement with single or double steps on the first move, as well as diagonal captures
-- An interactive console menu to select which piece to move and where
-- Logging functionality using the **Decorator Pattern** for debugging or demonstration purposes
+- **Placing pieces** on an 8×8 chessboard
+- **Pawn movement** with single or double steps on the first move, as well as diagonal captures
+- **An interactive console menu** to select which piece to move and where
+- **Logging functionality** using the **Decorator Pattern** for debugging or demonstration purposes
 
 The project is designed to be **extensible**, allowing the addition of more chess rules (such as check, checkmate, promotions, en passant) and additional pieces (Knights, Bishops, Rooks, Queens, Kings) with their respective movement strategies.
 
@@ -65,9 +62,9 @@ The project is designed to be **extensible**, allowing the addition of more ches
    **OR**
 
    Download the ZIP file from the repository and extract it:
-   - Visit the repository link: [SD_ChessGame](https://github.com/SamuelePoma/SD_ChessGame)
-   - Click on the "Code" button and select "Download ZIP"
-   - Extract the downloaded ZIP file and navigate to the extracted folder:
+    - Visit the repository link: [SD_ChessGame](https://github.com/SamuelePoma/SD_ChessGame)
+    - Click on the "Code" button and select "Download ZIP"
+    - Extract the downloaded ZIP file and navigate to the extracted folder:
     ```bash
     cd SD_ChessGame
     ```
@@ -98,12 +95,12 @@ The project is designed to be **extensible**, allowing the addition of more ches
 
 ### Prototype Pattern
 
-**Purpose:**
+**Purpose:**  
 Enables cloning of existing objects (pieces) instead of creating them from scratch.
 
 **Implementation:**
 
-- *BaseChessPiece Class:* Implements Cloneable and overrides the clone method.
+- **BaseChessPiece Class:** Implements `Cloneable` and overrides the `clone` method.
     ```java
     public abstract class BaseChessPiece implements Cloneable {
         @Override
@@ -116,8 +113,8 @@ Enables cloning of existing objects (pieces) instead of creating them from scrat
         }
     }
     ```
-    
-- *PiecePrototypeFactory Class:* Maintains prototypes in a Map and returns cloned pieces upon request.
+
+- **PiecePrototypeFactory Class:** Maintains prototypes in a `Map` and returns cloned pieces upon request.
     ```java
     public class PiecePrototypeFactory {
         private static final Map<String, BaseChessPiece> prototypes = new HashMap<>();
@@ -136,25 +133,25 @@ Enables cloning of existing objects (pieces) instead of creating them from scrat
 
 **Benefits:**
 
-1. *Performance Optimization:*  
+1. **Performance Optimization:**  
    Efficiently creates new objects by cloning existing prototypes, reducing the overhead of instantiation.
 
-2. *Dynamic Object Creation:*  
+2. **Dynamic Object Creation:**  
    Easily adds new types of chess pieces without altering the factory's core logic.
 
-3. *Consistency:*  
+3. **Consistency:**  
    Ensures that all cloned objects maintain the same initial state as their prototypes.
 
 ---
 
 ### Singleton Pattern
 
-**Purpose:**
-Ensures a single instance of the Game class exists, providing a global access point to manage the game state.
+**Purpose:**  
+Ensures a single instance of the `Game` class exists, providing a global access point to manage the game state.
 
-**Implementation:** 
+**Implementation:**
 
-- *Game Class:* Implements the Singleton Pattern by maintaining a private static instance and providing a public static method to access it.
+- **Game Class:** Implements the Singleton Pattern by maintaining a private static instance and providing a public static method to access it.
     ```java
     public class Game {
         private static Game instance;
@@ -173,13 +170,13 @@ Ensures a single instance of the Game class exists, providing a global access po
 
 **Benefits:**
 
-1. *Controlled Access to a Single Instance:*  
+1. **Controlled Access to a Single Instance:**  
    Guarantees only one instance of the game exists, avoiding duplication.
 
-2. *Global Access Point:*  
+2. **Global Access Point:**  
    Provides a centralized mechanism to access the game’s state and functionality.
 
-3. *Lazy Initialization:*  
+3. **Lazy Initialization:**  
    The instance is created only when needed, optimizing resource usage.
 
 ---
@@ -189,9 +186,9 @@ Ensures a single instance of the Game class exists, providing a global access po
 **Purpose:**  
 Simplifies the interface for managing the chessboard and interactions with chess pieces, hiding the complexity of individual components (e.g., piece movement, validation, and board state).
 
-**Implementation:**  
+**Implementation:**
 
-- *BoardFacade Class:* Acts as a central access point for the Board and BaseChessPiece classes, providing methods to place pieces, move them, and query the state of the board.
+- **BoardFacade Class:** Acts as a central access point for the `Board` and `BaseChessPiece` classes, providing methods to place pieces, move them, and query the state of the board.
     ```java
     public class BoardFacade {
         private final Board board;
@@ -216,14 +213,14 @@ Simplifies the interface for managing the chessboard and interactions with chess
 
 **Benefits:**
 
-1. *Simplified Interface:*  
+1. **Simplified Interface:**  
    Centralized access to chessboard operations reduces the need to interact directly with complex underlying systems.
 
-2. *Encapsulation of Complexity:*  
+2. **Encapsulation of Complexity:**  
    Hides the details of movement validation, piece placement, and board state management.
 
-3. *Improved Maintainability:*  
-   Changes in the internal logic (e.g., piece movement rules) don’t affect client code using the BoardFacade.
+3. **Improved Maintainability:**  
+   Changes in the internal logic (e.g., piece movement rules) don’t affect client code using the `BoardFacade`.
 
 ---
 
@@ -232,9 +229,9 @@ Simplifies the interface for managing the chessboard and interactions with chess
 **Purpose:**  
 Adds additional responsibilities to an object dynamically without altering its core behavior.
 
-**Implementation:**  
+**Implementation:**
 
-- *ChessPieceDecorator Abstract Class:* Serves as the base decorator, maintaining a reference to a BaseChessPiece object.
+- **ChessPieceDecorator Abstract Class:** Serves as the base decorator, maintaining a reference to a `BaseChessPiece` object.
     ```java
     public abstract class ChessPieceDecorator extends BaseChessPiece {
         protected final BaseChessPiece decoratedPiece;
@@ -251,7 +248,7 @@ Adds additional responsibilities to an object dynamically without altering its c
     }
     ```
 
-- *LoggingDecorator Concrete Class:* Adds logging functionality by overriding the canMove method to log move attempts.
+- **LoggingDecorator Concrete Class:** Adds logging functionality by overriding the `canMove` method to log move attempts.
     ```java
     public class LoggingDecorator extends ChessPieceDecorator {
         public LoggingDecorator(BaseChessPiece decoratedPiece) {
@@ -273,13 +270,13 @@ Adds additional responsibilities to an object dynamically without altering its c
 
 **Benefits:**
 
-1. *Open/Closed Principle:*  
+1. **Open/Closed Principle:**  
    Extends functionalities without modifying existing code.
 
-2. *Dynamic Behavior Addition:*  
+2. **Dynamic Behavior Addition:**  
    Adds or removes responsibilities at runtime.
 
-3. *Enhanced Flexibility:*  
+3. **Enhanced Flexibility:**  
    Allows multiple decorators to be applied to a single object for complex behavior enhancements.
 
 ---
@@ -287,18 +284,18 @@ Adds additional responsibilities to an object dynamically without altering its c
 ### Strategy Pattern
 
 **Purpose:**  
-Incorporates different movement behaviors for chess pieces without altering the logic of Board or BaseChessPiece.
+Incorporates different movement behaviors for chess pieces without altering the logic of `Board` or `BaseChessPiece`.
 
-Implementation:  
+**Implementation:**
 
-- *MoveStrategy Interface:* Declares the canMove method.
+- **MoveStrategy Interface:** Declares the `canMove` method.
     ```java
     public interface MoveStrategy {
         boolean canMove(BaseChessPiece piece, Board board, Position from, Position to);
     }
     ```
-    
-- *Concrete Strategies:* Implement specific movement rules.
+
+- **Concrete Strategies:** Implement specific movement rules.
     ```java
     public class PawnMoveStrategy implements MoveStrategy {
         @Override
@@ -310,16 +307,16 @@ Implementation:
 
 **Benefits:**
 
-1. *Flexibility:*  
+1. **Flexibility:**  
    Easily change or extend movement behaviors without modifying the chess piece classes or the board logic.
 
-2. *Maintainability:*  
+2. **Maintainability:**  
    Encapsulates movement logic within separate strategy classes, making the codebase easier to manage and understand.
 
-3. *Reusability:*  
+3. **Reusability:**  
    Movement strategies can be reused across different pieces or even different projects, promoting code reuse.
 
-4. *Adherence to SOLID Principles:*  
+4. **Adherence to SOLID Principles:**  
    Particularly the Open/Closed Principle, allowing the system to be open for extension but closed for modification.
 
 ---
@@ -329,16 +326,16 @@ Implementation:
 **Purpose:**  
 Manages the behavior of the chess game as it progresses through different phases (e.g., setup, play).
 
-Implementation:  
+**Implementation:**
 
-- *GameState Interface:* Defines the structure for game phases.
+- **GameState Interface:** Defines the structure for game phases.
     ```java
     public interface GameState {
         void execute();
     }
     ```
-    
-- *Concrete States:* Implement specific behaviors for each game phase.
+
+- **Concrete States:** Implement specific behaviors for each game phase.
     ```java
     public class SetupState implements GameState {
         private final Game game;
@@ -349,6 +346,7 @@ Implementation:
 
         @Override
         public void execute() {
+            // Implement setup logic
         }
     }
 
@@ -361,11 +359,12 @@ Implementation:
 
         @Override
         public void execute() {
+            // Implement play logic
         }
     }
     ```
-    
-- *Game Class:* Manages state transitions.
+
+- **Game Class:** Manages state transitions.
     ```java
     public class Game {
         private static Game instance;
@@ -404,13 +403,35 @@ Implementation:
 
 **Benefits:**
 
-1. *Simplified State Management:*  
+1. **Simplified State Management:**  
    Encapsulates game phase logic within separate classes, improving code organization.
 
-2. *Dynamic Behavior Changes:*  
+2. **Dynamic Behavior Changes:**  
    Allows the game to switch behaviors at runtime based on the current state.
 
-3. *Extensibility:*  
-   New states can be added without altering the existing states or the Game class.
+3. **Extensibility:**  
+   New states can be added without altering the existing states or the `Game` class.
 
+---
+
+## Code Structure
+
+### Component Descriptions
+
+- **`Board`:** Manages the chessboard, places pieces, and validates moves.
+- **`BaseChessPiece`:** Abstract class for all pieces; delegates movement logic to the assigned `MoveStrategy`.
+- **`MoveStrategy`:** Interface that defines movement logic.
+- **`PawnMoveStrategy`, `RookMoveStrategy`, `KnightMoveStrategy`, `BishopMoveStrategy`, `QueenMoveStrategy`, `KingMoveStrategy`:** Concrete strategies for respective piece movements.
+- **`ChessPieceDecorator`, `LoggingDecorator`:** Implement the Decorator Pattern to add logging functionality to chess pieces.
+- **`PiecePrototypeFactory`:** Implements the Prototype Pattern to clone piece prototypes.
+- **`Game`:** Implements the Singleton and State Patterns to manage the game's state and behavior transitions.
+- **`BoardFacade`:** Implements the Facade Pattern to provide a simplified interface for board operations.
+- **`Main`:** Entry point for the console-based application.
+
+---
+
+## Contributors
+
+- **Andrea Bezzolato** – Implemented the Singleton, State, and Facade design patterns.
+- **Samuele Poma** – Implemented the Strategy, Prototype, and Decorator design patterns.
 ---
